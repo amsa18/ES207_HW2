@@ -1,0 +1,101 @@
+---
+title: " Example R Markdown Script"
+author: John Doe & Sandra Angers-Blondin 
+date: January 18th 2017 
+output: pdf_document
+---
+\sffamily\fboxrule.1em\fboxsep1em
+\fcolorbox{black}{white}{\color{red}
+\begin{minipage}[c][2cm][c]{15cm}
+
+Adapted from: Tidy data and efficient manipulation
+
+Published: Coding Club tutorial
+
+Contact: s.angers-blondin@ed.ac.uk
+\end{minipage}}
+
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(message=FALSE, 
+tidy.opts=list(width.cutoff=60)) 
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Compiling files in R Markdown 
+
+-This example R script helps you to practice compiling an R Markdown file 
+-Always try to make a well commented, easy to follow the record of what is going on so that others can easily follow.
+
+
+1- Download the datasets for this example script from: <https://github.com/ourcodingclub/CC3-DataManip>.
+2-Load the following packages
+```{r cars}
+library(dplyr) # an excellent data manipulation package
+library(tidyr) # a package to format your data
+library(pander) #to create pretty tables
+``` 
+\textcolor{red}{* If you did not install above packages first install them with using the "install.packages()"}
+3- Set the working directory to the folder where you have downloaded the datasets, please attention to the example and how should the path be defined  in Windows
+```{r}
+setwd("~/Desktop/ES207/HW/EHS207_HW2/data.demo1/")
+```
+4- Importing the csv data by useing read.csv
+attention to the example and how should the path be defined  in Windows
+```{r}
+library(readr)
+# stem elongation measurements on crowberry
+elongation <- read.csv("~/Desktop/ES207/HW/EHS207_HW2/data.demo1/EmpetrumElongation.csv")
+# germination of seeds subjected to toxic solutions
+treatments <- read.csv("~/Desktop/ES207/HW/EHS207_HW2/data.demo1/EmpetrumTreatments.csv", sep = ";")
+```
+## Tidying the data
+Putting the data into long format using function "gather()" 
+```{r}
+elongation_long <- gather(elongation, Year, Length, c(X2007, X2008,X2009, X2010, X2011,X2012)) 
+head(elongation_long)
+```
+-gather() works like this: data, key, value, columns to gather. Here we want the lengths (value) to be gathered by year (key). Note that you are completely making up the names of the second and third arguments, unlike most functions in R.
+
+-Function head shows the first six lines of the data
+
+## Visualization
+To investigate the data, the boxplot of `elongation_long.' should be created.
+```{r}
+boxplot(Length ~ Year, 
+        data = elongation_long, 
+        xlab = "Year", 
+        ylab = "Elongation (cm)", 
+        main = "Annual growth of Empetrum hermaphroditum")
+```
+
+-For Treatment data, let's have a look at the distribution  across 'WF' by making a histogram
+- First coolect the data by Using command 'filter()' to keep only the rows of `treatments' for 'Wf'
+
+```{r}
+#treatments <- as.data.frame(treatments)
+TreatR <- subset(treatments, Treatment == "WF")
+#TreatR <-  treatments[treatments[,3] == 'WF']
+```
+
+
+ Let's have a look at the distribution of germination across SR
+ This histogram can be added to your R Markdown document by simply putting the code in a code chunk
+ Try adding some plain text to your R markdown document to explain the histogram
+```{r}
+hist(TreatR$Indiv, breaks = 8)
+```
+
+
+
+
+
+
+
+
+
+

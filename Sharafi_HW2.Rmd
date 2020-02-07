@@ -1,0 +1,491 @@
+---
+title: "Homework II, ES207"
+author: Amir Sharafi 
+date: 02/06/2020
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+For getting help for the function  'ncol()' we should use  command '?'.
+```{r}
+# asking for help
+?ncol()
+```
+Which regards to the help document, 'ncol' provides the number of columns in the matrix. If we want to use it for vector, we should use 'NCOL". 'nrow' and 'NROW' are for the number of rows. 
+
+## Question 2
+
+The repo is cloned now in the amsa18/ES207_HW2
+
+## Question 3
+
+Sharafi_hw.pdf is atatched for this question. 
+
+## Question 4
+
+Done,
+
+## Question 5
+
+```{r}
+v <- c(8:19) # create v
+w <- v[1:4]   # creat w by allocating 4 first elements of v 
+print(w) # print it
+```
+
+## Question 6
+
+```{r}
+source("evencount.R") # call the function to check the length of the vector d 
+d <- c(8:20) # create d
+if (evencount(length(d))==0)
+{h <- d[((length(d)+1)/2-2):((length(d)+1)/2+2)]   # creat h by allocating 5 middle elements of d 
+print(h) # print it
+} else
+ { print(paste("d has not the exact 5 middle elements"))}
+
+```
+
+## Question 7
+
+```{r}
+Length_w <- length(w) # measure length of w 
+print(Length_w)# print it
+```
+
+## Question 8
+
+According to Es207 instruction, there are three more properties  than the contents of the vector:
+-atomic vectors - holds homogenous data (data of a single type)
+-Length-how many elements it contains  length()
+-Attributes-any additional metadata attributes()
+
+## Question 9
+
+regards to "logical,integer,double,character"
+c(3,FALSE) ---> double
+c("a",1)  ----> character
+c(4L,2)  -----> double
+
+## Question 10
+-common 
+a)character 
+b)numeric 
+c)integer 
+d)logical 
+
+- Uncommon and rare types
+a)complex 
+b)raw  
+
+## Question 11
+
+1=="1" --> assume both as character  which they are equal and the answer is true 
+-1 < FALSE --> assume both as double and replace  FALSE by 0   which they the statement is true then  
+"one"< 2 --> assume both as character  which they are not equal and the answer is false 
+
+## Question 12
+'NA' is a special missing value placeholder, and it is a logical value. 'NA' in the other atomic types can be used as a placeholder but in "character" type, and the fact that we can not mix types, Na_charactor should be existed to fulfill the tasks. 
+```{r}
+s <- c(FALSE,NA)
+s # print 's'
+as.numeric(s) # find out the value as numeric 
+typeof(s) # type of the vector 's'
+ # s1 <- c("a",NA)
+ # typeof(s1)
+```
+
+## Question 13
+
+```{r}
+z <- c(5, 12, 13, 2, 3, 4, 5) #create z
+z[length(z)] <- z[length(z)] * 2 # the last element doubled
+print(z)
+```
+
+## Question 14
+
+```{r}
+a <- seq(from=0.6, to=1.9, length=11) #creating a
+b <- which(a >= 1.1)  # element number of element i a which greater than 1.1
+# c <- a[b] # elements in vector 'a' which are greater than 1.1
+print(b)
+```
+
+## Question 15
+
+```{r}
+a <- seq(from=0.6, to=1.9, length=11) #creating a
+a[a >= 1.1] <- 2  #  Set greater than or equal elements to 1.1  to 2.0 x <- c(1, 2, 4)
+print(a)
+```
+
+## Question 16
+In command 'c(),' all elements should be the same, so all transfer to the 'list,' but command 'list()' can accept different types of elements.
+```{r}
+l <-c(list(1,2),c(3,4))
+j=list(list(1,2),c(3,4))
+str(l)
+str(j)
+```
+
+
+## Question 17
+completely unlisted and become 'double.'
+
+```{r}
+l <- unlist(l)
+j <- unlist(j)
+str(l)
+str(j)
+typeof(l)
+typeof(j)
+```
+
+## Question 18
+
+Levels (e.g. female and male)  are better than using simple integer labels because factors are self-describing and more descriptive.
+
+## Question 19
+
+```{r}
+my.fac <- factor(c("yes", "yes", "no", "yes", "yes", "yes")) # creat the factor
+print(my.fac)
+table(my.fac) # find the frequency of elements by using table()
+```
+
+## Question 20
+
+I think this example wanted to show, how to manipulate data by functions 'rev()' and 'factor'
+```{r}
+f1 <- factor(letters) # create factor for vector of letters
+levels(f1) <-rev(levels(f1)) # reverse the levels
+f2 <- rev(factor(letters)) # reverse the data when levelss stay the same 
+f3 <- factor(letters, levels=rev(letters)) # reverse just the levels 
+```
+
+## Question 21
+
+ It should be TRUE since 'matrix' is a particular kind of array. So when data sets are matrix, it must be array too.  
+ 
+## Question 22
+
+they (kids and ages) do not have a  same length.
+```{r}
+# f <- data.frame(kids=c("Jack","Jill"),ages=c(12,10,11))
+```
+
+## BONUS
+
+It is a modern take on data frames.
+Pros:  1)easily can keep or drop the features in 'tibbles.' 2)better refind printing method 
+Cons: Tibbles are severe about subsetting
+
+```{r}
+# f2 <- tibble(kids=c("Jack","Jill"),ages=c(12,10)) # making tibble
+```
+
+## Question 23
+
+My observation showed that 'as.matrix()' turn the data.frame to the matrix. But there are letters and words in the data.frame, and since all types of elements of the matrix should be in the same class, the functions turn all the elements to the character. 
+```{r}
+f <- data.frame(kids=c("Jack","Jill"),ages=c(12,10))
+print (f)
+f <- as.matrix(f) # convert it to the matrix data type
+print (f)
+```
+
+## Question 24
+
+I matched "names" and "kids" according to the help '?merge'
+```{r}
+d1 <- data.frame(names = c("Jack", "Jill", "John"), states = c("CA", "IL", "IL"))
+d2 <- data.frame(ages = c(10, 7, 12), names = c("Jill", "Jillian", "Jack"))
+names(d2) <- c("ages","kids")  #change name of data farme 
+merge(d1, d2, by.x="names",by.y ="kids")
+
+```
+
+## Question 25
+
+Yes, it is possible. We can create data.frame without any rows, then specify the data types for each column and name them. Without any column does not make sense. 
+
+## Question 26
+
+```{r}
+hist(iris$Sepal.Width[iris$Sepal.Width<=3])
+```
+ 
+## Question 27
+
+Look like working. Since three columns are 'double' and the first one is Factor, which always is saved as an integer. So we can see the resualts.
+ 
+```{r}
+d <- data.frame(gender = c("M", "M", "F", "M", "F", "F"),
+        age=c(47, 59, 21, 32, 33, 24),
+        income=c(55000, 88000, 32450, 76500, 123000, 45650))
+d$over25 <- ifelse(d$age > 25, 1, 0)
+apply(d, 2, max)
+```
+
+## Question 28
+
+A function needs to have a name, body of code that does something. And also may have at least one argument and, in the end, return an object out of the function.
+
+## Question 29
+
+We can “return” the value of the object from the function (pass the value of it into the global environment), by putting the command of return before the end of the function. '> return(x)', then x will appear in your global too.
+
+## Question 30
+
+There is a function called "debug(my function)", for finding at what point the error occurs. You indicate which function you want to investigate.
+
+## Question 31
+
+This was your suggestion for homework I: "If you get any errors, make sure you have a > and re-type the function until you don’t get an error. Widespread errors are not closing parentheses and braces."
+
+
+## Question 32
+
+By using the stop() and stopifnot() functions, in combination with "if." We can check the stages by putting 'if,' and when something goes wrong, the function will stop working and print out my message that I wrote about the error before. 
+
+## Question 33
+
+Keeping the functions short gives the code cleaner and easily testable. It also makes it easy to update.
+ 
+## Question 34
+
+Global variables are in our main script, which we can insert them in the function by defining them as arguments (or input parameters).On the hand, local variables (created or defined in the function
+) are working inside the function and  does not exist outside the function (unless we returned them) 
+
+## Question 35
+
+It will calculate the wavelength of 20 cm.
+```{r}
+wave_to_freq <- function(wave) {
+  #note wavelength needs to be in meters
+  freq <- (299792458/wave) #speed of light in m/s
+  freq
+}
+wave <- 0.2
+paste("A wavelength of ",wave*100," cm has a frequency of", wave_to_freq(wave),"Hz"  )
+```
+
+## Question 36
+First, we will get an error since  no number assigned to a variable of 'x.'
+"Error in wave_to_freq(x) : object 'x' not found",but when assign a number to x, it is working, I mean the name of the assigned variable argument can be anything wave or x.
+In the end, we  can assign the function wave_to_freq() to object x and call x too. 
+
+```{r}
+x <- .5
+ x <- wave_to_freq(x)
+ x
+```
+
+## Question 37
+
+nano_to_meter.R created as function and uploaded to the /amsa18/es207_hw2.
+
+```{r}
+source("nano_to_meter.R") # call the function to Rmarkdown
+x <- 157800 #[nm]
+#note inputs needs to be in nanometers
+y <- nano_to_meter(x) #results in meters
+print(y)
+```
+
+## Question 38
+
+```{r}
+#note wavelength needs to be in micrometers
+wave_to_freq_GHz <- function(wave){
+  wave_m <- wave/1e6 # wave length in meters
+  freq_hz <- (299792458/ wave_m) #speed of light in m/s 
+  freq_Ghz<- freq_hz/1e9  # wave length in meters Hz convert to GHz
+  freq_Ghz #GHz
+}
+wave <- 80000 # micormeter
+paste("A wavelength of ",wave/10000," cm has a frequency of", wave_to_freq_GHz(wave),"GHz"  )
+
+```
+
+## Question 39
+
+First, find the frequency related to the wavelength of 30000 micrometers by using the above function.
+
+```{r}
+source("wave_to_freq_GHz.R") # call the function to Rmarkdown
+wave <- 30000 # micormeter
+paste("A wavelength of ",wave/10000," cm has a frequency of", wave_to_freq_GHz(wave),"GHz"  )
+```
+It is for the X band (between 8.0 to 12.0 GHZ) that is used for satelite communication and wireless computer network.
+
+## Question 40
+
+```{r}
+i <- 0
+x <- rnorm(40) #create a x
+for (n in x[1:10]) {
+  i <- i+1 # make a counter
+    y[i] <- n^2  #caluculates the square and save in a vector
+}
+print(y)
+```
+
+## Question 41
+
+```{r}
+i <- 3
+j <- 0
+y <- 0
+while(i<=28) # Without the break statement, this will be an infinite loop.
+  {
+  i <- 1+i # make a counter
+  if(i %% 2 == 1) next
+      {
+    j <- j+1 # make a counter
+      y[j] <- i
+      
+      }
+  
+}
+print(y)
+```
+
+## Question 42
+
+```{r}
+i <- 99
+j <- 0
+y <- 0
+while(i<=191) # Without the break statement, this will be an infinite loop.
+  {
+  i <- 1+i # make a counter
+  if(i %% 10 != 0) next
+      {
+    j <- j+1 # make a counter
+      y[j] <- i
+      
+      }
+  }
+print(y)
+
+```
+
+## Question 43
+
+I just tried to use a loop. Otherwise, there are many better ways to solve the problem.
+
+```{r}
+ u <- matrix(runif(100),ncol=10)
+# write two loop and two if that can answer the question (replace 3rd row and 5th column)
+for (i in 1:10){for(j in 1:10){if(i==3){u[i,] <- "ciao"} else if(j==5){u[,j] <- "ciao"} }}
+u 
+```
+
+## Question 44
+
+According to the R-bloggers: the loop is a way to repeat a sequence of instructions under certain conditions. 
+I have 120 devices, did the test 50 times on each of them (sample size 1000), and recorded around ten parameters (include: inputs, outputs, ...), I did not perform data analysis just for visualization, I made the plot for each device. I used a loop in  MATLAB to plot them.And also, for making the analytical model in MATLAB, I used 'for' and 'while' a lot. 
+
+## Question 45
+
+When in each iteration of the loop, a new element added to the variable and size of variable start to expanding, we call it 'growing of a variable,' which it is not recommended. In MATLAB, usually at first of the script, I defined the zero matrices or vectors then fill them with numbers. As an example in Question 41 and 42, I did it, and also on  Monday, you wrote the code in the class which variable 'x' was growing on it. 
+
+## Question 46
+
+A loop is a series of commands which is specified once, but it can be carried out many times in sequence. In other words, it is automating a multi-step process by making sets of operations. Regards to Fanara’s tutorial blog, the loop provides a comprehensive view of the situation in detail, what does happen in each stage and level and where the problem is. Hence, the programmer gets a clear idea about the whole procedure and manipulation process of data. I used to work with a loop, specially for-loop, instead of using fancy commands and functions since I have never work with big data, and producing a fast running time code was not essential for me during my master’s study. But recently, I am trying to use more vector operations in Matlab instead of for loop command. According to the datacamp.com, we should learn and understand the loop in R completely. Then we should never use it after that, and try to discover alternatives for performing more efficient looping tasks. The other option can be the ‘apply’ family functions; they are the vectorized functions. Vectorization is the process of converting repeated operations into single operations on vectors or matrices.
+
+   
+
+
+## Question 47
+
+```{r}
+#Estimate coefficient of variation 
+coefficient_of_variation <- lapply(mtcars, function(x) sd(x) /mean(x))
+print(coefficient_of_variation)
+```
+
+## Question 48
+
+
+```{r}
+# create the random data frame
+random_data <- data.frame(data1 = runif(5), data2 = runif(5), data3 = runif(5))
+scale01 <- function (x) {     #create the function
+  rng <-range(x, na.rm=TRUE) # find range of each column
+  (x-rng[1]) / (rng[2] - rng[1]) # sacle the elements # i fixed the code here
+}
+rd_range <- sapply(random_data, scale01)
+rd_range
+```
+For apply it to every numeric column in a data frame, i will add if() function to check type of each column.
+```{r}
+# create the random data frame
+random_data <- data.frame(data1 = runif(5), data2 = runif(5), data3 = runif(5))
+# (make one non-numeric column
+xnewrow <- c("a", "b", "c","d","e")
+# make one non-numeric column
+random_data <- cbind(random_data, xnewrow)
+
+ rd_range1 <- data.frame(data1=NA, data2=NA, data3=NA,data4=NA)[numeric(0), ]
+scale01 <- function (x) {     #create the function
+  rng <-range(x, na.rm=TRUE) # find range of each column
+   (x-rng[1]) / (rng[2] - rng[1]) # sacle the elements # i fixed the code here
+}
+#make a foor loop
+for (i in seq_along(random_data)){
+    print(rd_range1) #print result of each column.
+  # check the class of each column
+  if (class(random_data[,i])=="numeric"){
+    rd_range1 <-scale01( random_data[,i])
+    }else {
+   print(paste("The column is not numeric"))  
+  }
+}
+
+```
+
+
+## Question 49
+
+```{r}
+# creating the formulas as list 
+formulas <- list(
+  mpg ~ disp, 
+  mpg ~ I(1 / disp), 
+  mpg ~ disp + wt,
+  mpg ~ I(1 / disp) + wt)
+
+#start_time_lapply <- Sys.time() for cheking running time for Q.50 (disabled) 
+# fit linear models by lapply
+#install tictoc package
+# devtools::install_github("collectivemedia/tictoc") 
+library(tictoc) # enable the tictoc package
+tic("sleeping_lapply")
+out_lapply <- lapply(formulas,function(x) lm(x,data=mtcars))
+toc()
+#end_time_lapply <- Sys.time() disabled
+#start_time_for <- Sys.time() disabled
+# make an empty vector of the length of our random data from above
+
+tic("sleeping_for")
+out_for <- vector("list", length(formulas))
+#  fit linear models by for loop
+
+for (i in seq_along(formulas)) {
+  out_for[[i]] <- lm(formulas[[i]],data=mtcars)
+}
+toc()
+#end_time_for <- Sys.time()disabled
+#Compare the results together.
+#all.equal(out_lapply ,out_for)
+```
+
+## Question 50
+ 
+First, I used stat_time and End_time, but I did not like time precision in the function. So I download and install 'tictoc' package from GitHub. The running time in my laptop for 'lapply' was 0.42 sec, and 'for loop' for was 0.61 sec. It means for more complicated calculations, using 'lapply' would be more efficient. 
